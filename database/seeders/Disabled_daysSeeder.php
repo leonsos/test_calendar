@@ -13,7 +13,7 @@ class Disabled_daysSeeder extends Seeder
      */
     public function run()
     {
-        Disabled_day::factory(500)->create();
+        //Disabled_day::factory(500)->create();
         //\App\Models\User::factory(100)->create();
     }
 }

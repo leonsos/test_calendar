@@ -51,23 +51,21 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)
-    {
-        //$event=Disabled_day::all();
+    {        
         $event = DB::table('users')      
             ->leftJoin('user_plans', 'user_plans.user_id', '=', 'users.id')
             ->leftJoin('reservations', 'reservations.users_plan_id', '=', 'user_plans.id')
             ->select('reservations.reservation_start as start','reservations.reservation_end as end','reservations.title as title')   
             ->where('users.id',Auth::user()->id)
             ->get();           
-        return response()->json($event);
-        //return $event;
+        return response()->json($event);        
     }
     public function showx(Event $event)
     {
-        $eventx=DB::table('disabled_days')
-                ->select('day as start');       
-        return response()->json($eventx);
-        
+        $eventx = DB::table('disabled_days')
+                    ->select('day as start','title')
+                    ->get();
+                    return response()->json($eventx);       
     }
     public function shown(Event $event)
     {
